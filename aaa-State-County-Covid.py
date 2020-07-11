@@ -55,7 +55,11 @@ County_df.rename(columns={'Amin2':'County',
 TCovidsorted_df = County_df[County_df.When > '5-30-2020']
 TCovidsortedc_df = TCovidsorted_df.copy()
 TCovidsortedc_df['When'] = TCovidsorted_df['When'].dt.strftime('%Y-%m-%d')
-
+TCovidsortedc_df.rename(columns={'Del':'Daily Increase',
+                                 'Count':'Cumulative_Total',
+                                 'MovAvg':'7_Day_Moving_Avg',
+                                 'Admin2':'County'}, inplace=True)
+print(TCovidsortedc_df.columns)
 """Now read state data in preparation for plotting
 ________________________________________________________________________________________________"""
 df = pd.read_csv(
@@ -204,9 +208,8 @@ app.layout = html.Div(html.Div([
                 dash_table.DataTable(
                     id='table',
                     data=TCovidsortedc_df.to_dict('records'),
-                    columns=[{"name": i, "id": i} for i in TCovidsorted_df.columns],
-#                    style_as_list_view=True,
-                    style_data={'border': '1px solid black'},
+                    columns=[{"name": i, "id": i} for i in TCovidsortedc_df.columns],
+                     style_data={'border': '1px solid black'},
                     style_header={
                         'backgroundColor': 'rgb(230, 200 230)',
                         'fontWeight': 'bold',
@@ -222,21 +225,21 @@ app.layout = html.Div(html.Div([
                         'minWidth': '80px', 'width': '80px', 'maxWidth': '80px',
                         'whiteSpace': 'normal'
                     },
-                    style_cell_conditional=[
+#                    style_cell_conditional=[
 #                        {'if': {'column_id': 'When'},
 #                         'width': '80px'},
-                        {'if': {'column_id': 'Del'},
-                         'width': '80px'},
-                        {'if': {'column_id': 'MovAvg'},
-                         'width': '80px',
-                         'sorting': 'True' },
-                        {'if': {'column_id': 'Count'},
-                         'width': '80px'},
-                        {'if': {'column_id': 'State'},
-                         'width': '80px'},
-                        {'if': {'column_id': 'Admin2'},
-                         'width': '80px'}
-                    ],
+ #                       {'if': {'column_id': 'Del'},
+#                         'width': '80px'},
+#                       {'if': {'column_id': 'MovAvg'},
+#                         'width': '80px',
+#                        'sorting': 'True' },
+ #                       {'if': {'column_id': 'Count'},
+ #                        'width': '80px'},
+#                       {'if': {'column_id': 'State'},
+#                         'width': '80px'},
+#                       {'if': {'column_id': 'Admin2'},
+#                         'width': '80px'}
+#                    ],
 #                    editable=True,
                     filter_action="native",
                     sort_action="native",
@@ -268,8 +271,8 @@ app.layout = html.Div(html.Div([
         ),
 #            html.Hr(),
 
-            html.Hr(),
-            html.Hr(),
+#            html.Hr(),
+#            html.Hr(),
             html.Br(),
             html.Hr(),
                 html.Div([
