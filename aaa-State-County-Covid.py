@@ -111,7 +111,7 @@ app.layout = html.Div(html.Div([
                             'width': '200'},
 
                         className='twelve columns'),
-                html.H3(children='Tables and Graphs showing the daily increase in cases',
+                html.H3(children='Tables and Graphs showing the Forsyth County daily increase in cases',
                         style={'color' : 'blue',
                                'fontSize' : '14',
                             'textAlign': 'center'},
