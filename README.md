@@ -8,5 +8,5 @@ availabe data and analyze it using Python.
 Along the way, I had to refresh myself on Pycharm and learn more about Plotly and and Plotly Dash.  Also, a great tool
 for prototyping is Jupyter lab and Plotly Chart Editor.  
 
-I have been working locally or using Google's Colab for prottyping.  Now that I have several analyses, I want to share those with family and colleague.  Yet again, I must learn 
+I have been working locally or using Google's Colab for prottyping.  Now that I have several analyses, I want to share those with family and colleagues.  Yet again, I must learn 
 a new platform of Heroku and reacquaint myself with Git and GitHub.
