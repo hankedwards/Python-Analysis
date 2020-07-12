@@ -1,7 +1,7 @@
 """
-Last update 06-13-20 at 3:00 pm
--- need to clean up date formatting and moving avg formats and table sorting
--- Need to integrate "my-date" into the reanges
+Last update 07-12-2020 at 3:00 pm
+-- worked on getting set up in Git Github and Heroku environment
+
 """
 
 import pandas as pd
@@ -107,6 +107,9 @@ dfa.rename(columns={'hospitalizedIncrease':'HospInc',
                         }, inplace=True)
 """=============================================================================================="""
 app=dash.Dash()
+# the line below is to allow code to be run on Heroku
+server = app.server
+#  ------------------------------
 app.title ="Georgia Covid"
 app.css.append_css({'external_url': 'https://codepen.io/amyoshino/pen/jzXypZ.css'})
 app.layout = html.Div(html.Div([
