@@ -92,15 +92,17 @@ print('')
 dfa = pd.read_csv('https://covidtracking.com/api/v1/states/daily.csv')
 state = ['GA']
 dfa = dfa[dfa['state'].isin(state)]
-#County_df['Del'] = County_df['Count'] - County_df['Count'].shift(+1)
-dfa['PercP'] = (dfa['positive'] / dfa['total']).round(decimals=4)
+
+dfa['PercP'] = ((dfa['positive'] / dfa['total'])*100).round(decimals=2).astype(str).add('%')
+
 dfa.loc[dfa['totalTestResultsIncrease'] < 0, 'totalTestResultsIncrease'] = 0
 dfa['When'] = (pd.to_datetime(dfa['date'],format='%Y%m%d')).dt.strftime('%Y-%m-%d')
-#dfa['When'] = pd.to_datetime(dfa['date'],format='%Y%m%d')
+
 dfa=dfa[['When', 'positiveIncrease','deathIncrease', 'hospitalizedIncrease','death','hospitalized', 'total','positive','PercP','totalTestResultsIncrease']]
 dfa.rename(columns={'hospitalizedIncrease':'HospInc',
                           'positiveIncrease':'PosInc',
                           'deathIncrease':'Deaths',
+                           'PercP':'% Positive',
                           'totalTestResultsIncrease':'TestInc'
                         }, inplace=True)
 """=============================================================================================="""
